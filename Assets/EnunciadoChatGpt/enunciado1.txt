@@ -1,0 +1,39 @@
+Aquí tienes una propuesta de estructura POO para un sistema de "Duelo de Magos y Hechizos" en un videojuego. Esta estructura es sencilla y cuenta con tres clases que se relacionan entre sí.
+1. Clase Mago
+
+Descripción: Representa a un mago que participa en duelos y tiene la capacidad de lanzar hechizos.
+
+    Atributos:
+        public string nombre: El nombre del mago.
+        private int nivelPoder: Nivel de poder mágico del mago, que influye en la efectividad de los hechizos.
+        public List<Hechizo> hechizos: Lista de hechizos que el mago puede lanzar.
+
+    Métodos:
+        public void LanzarHechizo(Hechizo hechizo): Imprime un mensaje indicando que el mago está lanzando un hechizo y muestra el nombre del hechizo.
+        private void AumentarPoder(): Incrementa el nivel de poder del mago.
+
+2. Clase Hechizo
+
+Descripción: Representa un hechizo que un mago puede lanzar durante un duelo.
+
+    Atributos:
+        public string nombre: El nombre del hechizo (ej. "Bola de Fuego", "Escudo de Hielo").
+        private int potencia: La potencia del hechizo, que define su impacto en el duelo.
+        public bool esOfensivo: Indica si el hechizo es ofensivo o defensivo.
+
+    Métodos:
+        public void Activar(): Imprime un mensaje indicando que el hechizo se ha activado y describe su efecto.
+        private void MejorarPotencia(): Aumenta la potencia del hechizo.
+
+3. Clase CampoDeDuelo
+
+Descripción: Representa el lugar donde los magos se enfrentan y lanzan sus hechizos.
+
+    Atributos:
+        public string ubicacion: La ubicación del campo de duelo (ej. "Valle Místico", "Ruinas Encantadas").
+        public int maxParticipantes: El número máximo de magos que pueden participar en un duelo.
+        private List<Mago> magosEnDuelo: Lista de magos que están participando en el duelo actual.
+
+    Métodos:
+        public void IniciarDuelo(): Imprime un mensaje indicando que el duelo ha comenzado y muestra los nombres de los magos participantes.
+        private void ComprobarEstado(): Verifica que el campo esté listo para el duelo y ajusta las condiciones si es necesario.

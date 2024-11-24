@@ -1,0 +1,95 @@
+Aquí tienes un ejercicio sencillo y original, con temática de magos y hechizos, que utiliza el Input System y movimiento mediante Transform.
+Ejercicio: Mago en entrenamiento
+
+Objetivo: Crea un juego en Unity donde un mago se mueve por un espacio abierto y puede lanzar un hechizo básico en la dirección que apunta la cámara.
+Requisitos del ejercicio
+
+    Configuración inicial:
+        Crea un terreno plano como escenario.
+        Añade un objeto Player (puede ser un cubo o una esfera representando al mago).
+        Implementa una cámara en tercera persona, con la opción de rotar alrededor del jugador (similar a lo que ya hiciste).
+
+    Movimiento del jugador:
+        El jugador debe moverse con las teclas W, A, S, D usando el Input System.
+        La rotación del jugador debe seguir la dirección de la cámara cuando se mueva.
+
+    Lanzamiento de hechizos:
+        Usa el botón izquierdo del ratón para lanzar un hechizo (puede ser una esfera) en la dirección que apunta la cámara.
+        El hechizo debe aparecer frente al jugador y moverse hacia adelante usando Transform.Translate.
+
+    Efectos visuales:
+        Cambia el color de la esfera del hechizo a algo brillante, como azul o rojo.
+        Opcional: Añade un pequeño trail para que el hechizo se vea más mágico.
+
+    Desafío adicional:
+        Implementa un sistema básico de recarga (por ejemplo, el jugador puede lanzar un hechizo cada 2 segundos).
+
+Instrucciones paso a paso
+
+    Movimiento del mago:
+        Configura un PlayerInput para capturar los movimientos del teclado.
+        Usa un Transform.Translate para mover el jugador basado en los inputs de dirección.
+        Vincula la rotación del jugador a la dirección de la cámara.
+
+    Rotación de la cámara:
+        Permite que la cámara gire alrededor del jugador con el movimiento del ratón (ya lo tienes hecho, úsalo aquí).
+
+    Lanzar un hechizo:
+        Crea un prefab de una esfera que representará el hechizo.
+        Captura el clic izquierdo del ratón con el Input System.
+        Instancia la esfera frente al jugador y aplica movimiento hacia adelante con Transform.Translate en el Update.
+
+    Recarga del hechizo:
+        Usa un bool y un Cooldown para controlar el tiempo entre lanzamientos.
+
+Código sugerido
+
+Este código te puede ayudar como base para la parte del lanzamiento del hechizo:
+
+using UnityEngine;
+
+public class WizardController : MonoBehaviour
+{
+    public GameObject spellPrefab; // Prefab del hechizo
+    public Transform spellSpawnPoint; // Punto de salida del hechizo
+    public float spellSpeed = 10f; // Velocidad del hechizo
+    public float cooldownTime = 2f; // Tiempo de recarga
+
+    private float lastSpellTime;
+
+    void Update()
+    {
+        // Movimiento básico (con Input System configurado)
+        Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        transform.Translate(moveDirection * Time.deltaTime * 5f);
+
+        // Lanzar hechizo
+        if (Input.GetMouseButtonDown(0) && Time.time > lastSpellTime + cooldownTime)
+        {
+            CastSpell();
+            lastSpellTime = Time.time;
+        }
+    }
+
+    void CastSpell()
+    {
+        // Instanciar el hechizo y lanzarlo hacia adelante
+        GameObject spell = Instantiate(spellPrefab, spellSpawnPoint.position, Quaternion.identity);
+        Rigidbody rb = spell.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.velocity = transform.forward * spellSpeed;
+        }
+
+        // Destruir el hechizo después de 3 segundos
+        Destroy(spell, 3f);
+    }
+}
+
+Extensiones posibles
+
+    Añade dianas u objetos que se destruyan al ser impactados por el hechizo.
+    Crea diferentes tipos de hechizos con efectos visuales y velocidades únicas.
+    Usa partículas para hacer que los hechizos se vean más mágicos.
+
+¡Esto debería ser un ejercicio divertido y útil para seguir practicando Unity! 🚀
