@@ -1,7 +1,13 @@
 # Unidad-4-entregable
  
-Entregable 1: Mago de texto, es un mago el cual lanza hechizos por medio de texto (consola), se utiliza el editor para seleccionar los hechizos que quiera lanzar y luego se activan usando el bool "Summon Spell"
+Scene 1:
 
-Entregable 2: Sistema solar, ejercicio propuesto por el profesor Santiago, sin eventos por jugador.
+ Text Mage – A mage that casts spells through text (console). The editor is used to select the spells to be cast, which are then activated using the "Summon Spell" bool.
 
-Entregable 3: Cubo magico, se mueve por medio de axis (W,A,S,D y mouse axis para rotación), salta (barra space) y lanza hechizos (click izquierdo).
+Scene 2:
+
+ Solar System – Exercise proposed by Professor Santiago, with no player-driven events.
+
+Scene 3:
+
+ Magic Cube – Moves using axis controls (W, A, S, D and mouse axis for rotation), jumps (space bar), and casts spells (left click).
